@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
+/**
+ * this class is used to map a client to a clientDTO.
+ * it implements the Function interface to be used as a lambda expression. (functionnal programming)
+ */
 @Service
 public class ClientMapper implements Function<Client, ClientDTO> {
 

@@ -6,6 +6,9 @@ import com.ekwateur.testtechnique.exceptions.UnexpectedValueException;
 
 import java.util.List;
 
+/**
+ * this interface is used to define the methods related to business logic of Clients.
+ */
 public interface ClientService {
     List<Client> getAllClients();
 

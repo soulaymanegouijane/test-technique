@@ -12,20 +12,38 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * this class is used to implement the client service interface.
+ */
 @Service
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepo clientRepository;
 
+    /**
+     * this constructor is used to inject dependencies
+     * @param clientRepository the client repository
+     */
     public ClientServiceImpl(final ClientRepo clientRepository) {
         this.clientRepository = clientRepository;
     }
 
+    /**
+     * this method is used to add a client to the database
+     * @return a list of client entities
+     */
     @Override
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
+    /**
+     * this method is used to compute and return the total amount that a client will pay.
+     * @param reference the client reference
+     * @return the total amount that the client will pay
+     * @throws UnexpectedValueException thrown when the turnover is not in the valid range
+     * @throws UnexpectedClientTypeException thrown when the client type is not supported
+     */
     @Override
     public double getTotalTarif(final String reference) throws UnexpectedValueException, UnexpectedClientTypeException {
         Client client = clientRepository.findByReference(reference);

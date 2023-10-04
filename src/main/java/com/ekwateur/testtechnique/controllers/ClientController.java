@@ -28,12 +28,23 @@ public class ClientController {
      */
     private final ClientMapper clientMapper;
 
+    /**
+     * Client Controller constructor.
+     * used to inject the dependencies
+     * @param clientService the client service
+     * @param clientMapper the client mapper
+     */
     public ClientController(final ClientService clientService,
                             final ClientMapper clientMapper) {
         this.clientService = clientService;
         this.clientMapper = clientMapper;
     }
 
+    /**
+     * getAllClients.
+     * this method is responsible for getting all the clients from the database
+     * @return a list of clients
+     */
     @GetMapping
     public List<ClientDTO> getAllClients () {
         return clientService.getAllClients().stream()
@@ -41,6 +52,14 @@ public class ClientController {
                 .toList();
     }
 
+    /**
+     * getTotalTarif.
+     * this method is responsible for computing and returning the total tarif that a client will pay
+     * @param reference the client reference
+     * @return an object containing the client's reference and the total amount to be paid
+     * @throws UnexpectedValueException if the client reference is not found
+     * @throws UnexpectedClientTypeException if the client type is not supported
+     */
     @GetMapping("/{reference}/total")
     public TotalTarifResponseDTO getTotalTarif(@PathVariable("reference") final String reference)
             throws UnexpectedValueException, UnexpectedClientTypeException {
